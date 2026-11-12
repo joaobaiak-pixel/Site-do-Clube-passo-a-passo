@@ -1,1272 +1,544 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
-    <!-- =====================================================
-         CONFIGURAÇÕES DA PÁGINA
-         NÃO APAGAR
-    ====================================================== -->
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Receitas com erva-mate criativas e tradicionais.">
+    <meta name="author" content="Clube de Ciências Ouro Verde">
+    <meta name="theme-color" content="#123d24">
+    <title>Receitas | Clube de Ciências Ouro Verde</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/style.css?v=4">
+    <link rel="stylesheet" href="../css/hero.css?v=4">
+    <link rel="stylesheet" href="../css/paginas.css?v=4">
+    <link rel="stylesheet" href="../css/responsivo.css?v=4">
+    
+    <style>
+        .grid-receitas {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+        .card-receita {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
 
+        .card-receita:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
 
-    <!-- =====================================================
-         EDITAR 1
-         Troque somente o nome da página
-         
-         EXEMPLO:
-         Projetos | Clube de Ciências Ouro Verde
-    ====================================================== -->
+        .card-receita-imagem {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            overflow: hidden;
+            position: relative;
+        }
 
-    <title>
-        receitas | Clube de Ciências Ouro Verde
-    </title>
+        .card-receita-imagem img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
+        .card-receita-conteudo {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
-    <!-- =====================================================
-         EDITAR 2
-         Escreva uma descrição curta da página.
-    ====================================================== -->
+        .card-receita-titulo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #123d24;
+            margin: 0 0 0.8rem 0;
+            font-family: 'Cinzel', serif;
+        }
 
-    <meta
-        name="description"
-        content="O conteúdo apresenta a erva-mate (Ilex paraguariensis),
-        destacando sua origem e características, além de reunir diversas 
-        formas de utilizá-la na culinária. São apresentadas receitas doces
-        e salgadas, como brigadeiro, sorvete, pão, pão de queijo, bala, 
-        mousse, bolo, pesto, bolacha, alfajor e farofa. Também são explicados 
-        os modos tradicionais de preparo do chimarrão e do tereré. Em geral, 
-        o material mostra a versatilidade da erva-mate, indo além das bebidas 
-        tradicionais e podendo ser utilizada em diferentes pratos."
-    >
+        .card-receita-info {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+        }
 
+        .card-receita-avaliacao {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.8rem 0;
+            padding: 0.8rem 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
 
-    <meta
-        name="author"
-        content="Clube de Ciências Ouro Verde"
-    >
+        .estrelas {
+            display: flex;
+            gap: 0.1rem;
+            font-size: 1rem;
+            color: #ffc107;
+        }
 
-    <meta
-        name="theme-color"
-        content="#123d24"
-    >
+        .card-receita-avaliacao small {
+            color: #999;
+            font-size: 0.8rem;
+        }
 
+        .card-receita-botao {
+            margin-top: auto;
+            padding: 0.8rem;
+            background-color: #123d24;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+        }
 
+        .card-receita-botao:hover {
+            background-color: #0d2918;
+        }
 
-    <!-- =====================================================
-         FONTES
-         NÃO ALTERAR
-    ====================================================== -->
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+        }
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+        .modal.ativo {
+            display: block;
+        }
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+        .modal-conteudo {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+        }
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+        .modal-fechar {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+            border: none;
+            background: none;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
+        .modal-fechar:hover {
+            color: #123d24;
+        }
 
+        .modal-titulo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #123d24;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 1.5rem;
+            margin-top: 1rem;
+        }
 
-    <!-- =====================================================
-         ARQUIVOS CSS
-         NÃO ALTERAR
-    ====================================================== -->
+        .modal-secao {
+            margin-bottom: 1.5rem;
+        }
 
-    <!-- Estilo geral do site -->
-    <link
-        rel="stylesheet"
-        href="../css/style.css?v=4"
-    >
+        .modal-secao h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #123d24;
+            margin-bottom: 0.7rem;
+        }
 
-    <!-- Cabeçalho igual ao da página inicial -->
-    <link
-        rel="stylesheet"
-        href="../css/hero.css?v=4"
-    >
+        .modal-secao ul,
+        .modal-secao ol {
+            margin-left: 1.5rem;
+            line-height: 1.8;
+            color: #555;
+        }
 
-    <!-- Estilos das páginas internas -->
-    <link
-        rel="stylesheet"
-        href="../css/paginas.css?v=4"
-    >
+        .modal-secao li {
+            margin-bottom: 0.5rem;
+        }
 
-    <!-- Adaptação para tablet e celular -->
-    <link
-        rel="stylesheet"
-        href="../css/responsivo.css?v=4"
-    >
+        .modal-fonte {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
 
+        @media (max-width: 768px) {
+            .grid-receitas {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-conteudo {
+                width: 95%;
+                margin: 20% auto;
+            }
+        }
+    </style>
 </head>
-
-
 <body>
-
-
-
-    <!-- =====================================================
-         CABEÇALHO DO SITE
-         NÃO ALTERAR
-    ====================================================== -->
-
-    <header
-        class="cabecalho-principal"
-        id="inicio"
-    >
-
+    <header class="cabecalho-principal" id="inicio">
         <div class="cabecalho-sobreposicao">
-
             <div class="cabecalho-conteudo">
-
-
-
-                <!-- LOGO DO COLÉGIO -->
-
                 <div class="area-logo area-logo-colegio">
-
-                    <a
-                        class="cabecalho-logo logo-colegio"
-                        href="../index.html"
-                        aria-label="Voltar para a página inicial"
-                    >
-
-                        <img
-                            src="../imagens/logos/logo-eugenio.png"
-                            alt="Logo do Colégio Estadual do Campo Professor Eugênio de Almeida"
-                        >
-
+                    <a class="cabecalho-logo logo-colegio" href="../index.html" aria-label="Página inicial">
+                        <img src="../imagens/logos/logo-eugenio.png" alt="Logotipo do Colégio Estadual do Campo Professor Eugênio de Almeida">
                     </a>
-
                 </div>
-
-
-
-                <!-- NOME DO SITE -->
-
                 <div class="cabecalho-texto">
-
-                    <p class="cabecalho-linha-menor">
-                        Clube de Ciências
-                    </p>
-
-                    <h1>
-                        Ouro Verde
-                    </h1>
-
+                    <p class="cabecalho-linha-menor">Clube de Ciências</p>
+                    <h1>Ouro Verde</h1>
                     <div class="linha-decorativa"></div>
-
-                    <p class="cabecalho-escola">
-                        Colégio Estadual do Campo Professor Eugênio de Almeida
-                    </p>
-
-                    <p class="cabecalho-niveis">
-                        Ensino Fundamental, Médio e Técnico
-                    </p>
-
-                    <p class="cabecalho-local">
-                        Distrito de Fluviópolis • São Mateus do Sul • Paraná
-                    </p>
-
+                    <p class="cabecalho-escola">Colégio Estadual do Campo Professor Eugênio de Almeida</p>
+                    <p class="cabecalho-niveis">Ensino Fundamental, Médio e Técnico</p>
+                    <p class="cabecalho-local">Distrito de Fluviópolis • São Mateus do Sul • Paraná</p>
                 </div>
-
-
-
-                <!-- LOGO DO CLUBE -->
-
                 <div class="area-logo">
-
-                    <a
-                        class="cabecalho-logo"
-                        href="../index.html"
-                        aria-label="Clube de Ciências Ouro Verde"
-                    >
-
-                        <img
-                            src="../imagens/logos/logo-clube.png"
-                            alt="Logo do Clube de Ciências Ouro Verde"
-                        >
-
+                    <a class="cabecalho-logo" href="../index.html" aria-label="Clube de Ciências Ouro Verde">
+                        <img src="../imagens/logos/logo-clube.png" alt="Logo do Clube de Ciências Ouro Verde">
                     </a>
-
                 </div>
-
-
             </div>
-
         </div>
-
     </header>
 
-
-
-    <!-- =====================================================
-         MENU PRINCIPAL
-         
-         NÃO APAGAR.
-         
-         O estudante deverá colocar:
-         
-         class="menu-ativo"
-         
-         SOMENTE no link da página que está construindo.
-    ====================================================== -->
-
-    <nav
-        class="menu-principal"
-        aria-label="Menu principal"
-    >
-
+    <nav class="menu-principal" aria-label="Menu principal">
         <div class="menu-container">
-
-
-            <a
-                class="menu-marca"
-                href="../index.html"
-            >
-                Ouro Verde
-            </a>
-
-
+            <a class="menu-marca" href="../index.html">Ouro Verde</a>
             <ul class="menu-lista">
-
-
-                <li>
-                    <a href="../index.html">
-                        Início
-                    </a>
-                </li>
-
-
-                <li>
-                    <a href="historia.html">
-                        História
-                    </a>
-                </li>
-
-
-                <li>
-                    <a href="lendas-folclore.html">
-                        Lendas
-                    </a>
-                </li>
-
-
-                <li>
-                    <a href="plantio-cuidados.html">
-                        Plantio
-                    </a>
-                </li>
-
-
-                <li>
-                    <a href="producao-mudas.html">
-                        Produção de Mudas
-                    </a>
-                </li>
-
-
-                <li>
-                    <a href="receitas.html">
-                        Receitas
-                    </a>"Menu principal"
-                </li>
-
-
-                <li>
-                    <a href="projetos.html">
-                        Projetos
-                    </a>
-                </li>
-
-
-                <li>
-                    <a href="galeria.html">
-                        Galeria
-                    </a>
-                </li>
-
-
-                <li>
-                    <a href="noticias.html">
-                        Notícias
-                    </a>
-                </li>
-
-
+                <li><a href="../index.html">Início</a></li>
+                <li><a href="historia.html">História</a></li>
+                <li><a href="lendas-folclore.html">Lendas</a></li>
+                <li><a href="plantio-cuidados.html">Plantio</a></li>
+                <li><a href="producao-mudas.html">Produção de Mudas</a></li>
+                <li><a class="menu-ativo" href="receitas.html">Receitas</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
             </ul>
-
         </div>
-
     </nav>
 
-
-
-    <!-- =====================================================
-         CONTEÚDO PRINCIPAL
-         
-         A PARTIR DAQUI O ESTUDANTE PODERÁ EDITAR.
-    ====================================================== -->
-
     <main class="pagina-interna">
-
-
-
-        <!-- =================================================
-             ABERTURA DA PÁGINA
-             
-             EDITAR 3
-        ================================================== -->
-
         <section class="abertura-pagina">
-
             <div class="container">
-
-
-                <!-- Pequeno texto acima do título -->
-
-                <p class="rotulo-secao">
-                    Clube de Ciências Ouro Verde
-                </p>
-
-
-                <!--
-                    TROCAR PELO NOME DA PÁGINA
-                    
-                    Exemplos:
-                    
-                    História da Erva-Mate
-                    Lendas e Folclore
-                    Plantio e Cuidados
-                    Produção de Mudas
-                    Receitas
-                    Projetos do Clube
-                -->
-
-                <h1>
-                  receitas
-                </h1>
-
-
+                <p class="rotulo-secao">Clube de Ciências Ouro Verde</p>
+                <h1>Receitas com Erva-Mate</h1>
                 <div class="linha-titulo"></div>
-
-
-                <!--
-                    as melhores receitas sobre erva-mate você encontra agui.
-                -->
-
                 <p class="introducao-pagina">
-
-                    A erva-mate faz parte da cultura e da história do Sul do Brasil,
-                    mas seus sabores vão muito além do tradicional chimarrão. Nesta
-                    página, você vai descobrir diferentes formas de aproveitar essa 
-                    planta tão presente no nosso dia a dia, transformando-a em doces,
-                    pães, bolos, bebidas e até acompanhamentos salgados.
-
-                    Se você gosta de experimentar sabores diferentes ou quer conhecer 
+                     Se você gosta de experimentar sabores diferentes ou quer conhecer 
                     novas maneiras de utilizar a erva-mate na cozinha, prepare-se para
                     encontrar receitas simples, criativas e cheias de identidade.
                     Explore a página, escolha sua receita favorita e descubra como um 
-                    ingrediente tão tradicional pode ganhar novos sabores e possibilidades!
-
-                </p>
-
+                    ingredientes tão tradicionais podem ganhar novos sabores e possibilidades!
 
             </div>
-
         </section>
-
-
-
-        <!-- =================================================
-             CONTEÚDO DA PÁGINA
-             
-             A PARTIR DESTE PONTO CADA ESTUDANTE
-             CONSTRUIRÁ SEU PRÓPRIO CONTEÚDO.
-        ================================================== -->
 
         <section class="conteudo-pagina">
-
             <div class="container">
-
-
-
-                <!-- =========================================
-                     BLOCO 1
-                     
-                     TEXTO
-                     
-                     Pode ser utilizado para explicar
-                     o primeiro assunto da página.
-                ========================================== -->
-
-                <section class="bloco-conteudo">
-
-
-                    <p class="rotulo-secao">
-                        PRIMEIRO ASSUNTO
-                    </p>
-
-
-                    <h2>
-                      Brigadeiro de Erva-mate<
-                    </h2>
-
-
-                    <p>
-
-                       <h3>Ingredientes (10 porções)</h3>
-  <ul>
-    <li>1 lata de leite condensado</li>
-    <li>1 colher de sopa de manteiga</li>
-    <li>1 colher de sobremesa de erva-mate peneirada</li>
-    <li>200 g de chocolate ao leite</li>
-    <li>corante verde</li>
-  </ul>
-
-  <h3>Modo de preparo</h3>
-  <ol>
-    <li>Derreta o chocolate em banho-maria.</li>
-    <li>Coloque o chocolate derretido em forminhas e leve à geladeira.</li>
-    <li>Em uma panela, coloque o leite condensado, a manteiga e a erva-mate peneirada.</li>
-    <li>Cozinhe em fogo baixo, mexendo sempre até desgrudar do fundo da panela.</li>
-    <li>Adicione algumas gotas de corante verde antes do ponto final.</li>
-    <li>Desenforme os copinhos de chocolate.</li>
-    <li>Enrole o brigadeiro e coloque dentro dos copinhos.</li>
-  </ol>
-                    </p>
- <p>
-    Fonte:
-    https://www.tudogostoso.com.br/receita/172004-brigadeiro-de-erva-mate.html
-
-  </p>
-
-        <h1>Pão de Ló com Erva-Mate</h1>
-
-        <section class="informacoes">
-            <strong>Temperatura do forno:</strong> 180 ºC<br>
-            <strong>Tempo de forno:</strong> aproximadamente 35 minutos
-        </section>
-
-        <section>
-            <h2>Ingredientes</h2>
-
-            <ul class="ingredientes">
-                <li>5 ovos</li>
-                <li>3 colheres de sopa de suco de laranja ou água</li>
-                <li>15 colheres de sopa de açúcar refinado peneirado</li>
-                <li>15 colheres de sopa de farinha de trigo peneirada</li>
-                <li>1 e 1/2 colher de fermento químico</li>
-                <li>3 colheres de sopa de pó de erva-mate</li>
-                <li>1 pitada de sal</li>
-                <li>100 gramas de nozes quebradas e tostadas</li>
-                <li>100 gramas de goiabada picada e envolvida com farinha de trigo</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Modo de Preparo</h2>
-
-            <ol>
-                <li>
-                    Comece separando as claras das gemas. Reserve as gemas.
-                </li>
-
-                <li>
-                    Em uma batedeira, adicione as claras, a pitada de sal e o
-                    suco de laranja ou água. Bata até atingir o ponto de claras em neve.
-                </li>
-
-                <li>
-                    Siga batendo e acrescentando o açúcar aos poucos até virar um merengue.
-                </li>
-
-                <li>
-                    Agora, adicione as gemas, uma a uma.
-                </li>
-
-                <li>
-                    Quando tiver uma mistura homogênea, junte na batedeira a
-                    farinha de trigo e a erva-mate. Siga batendo.
-                </li>
-
-                <li>
-                    Por fim, acrescente o fermento químico e misture rapidamente
-                    na batedeira ou mexa com uma colher.
-                </li>
-
-                <li>
-                    Transfira a massa para uma forma untada e enfarinhada ou
-                    coberta com papel manteiga. Se precisar, alise a massa com uma colher.
-                </li>
-
-                <li>
-                    Por cima, espalhe as nozes e os cubos de goiabada envolvidos
-                    na farinha de trigo.
-                </li>
-
-                <li>
-                    Leve ao forno pré-aquecido a <strong>180 ºC</strong> por
-                    aproximadamente <strong>35 minutos</strong>.
-                </li>
-
-                <li>
-                    Passado o tempo, retire do forno e espere amornar antes de desenformar.
-                </li>
-            </ol>
-        </section>
-
-        <div class="finalizacao">
-            <strong>Finalização:</strong>
-            depois de desenformar, polvilhe um pouco de açúcar por cima.
-        </div>
-<p> https://www.bonsfluidos.com.br/bem-estar/para-alem-do-chimarrao-receita-de-pao-de-lo-com-erva-mate.phtml <p>
-
-                    <p>
-
-                         <h2>Sorvete de Erva-mate</h2>
-
-  <h3>Ingredientes</h3>
-  <ul>
-    <li>1 litro de leite</li>
-    <li>1 1/2 xícara de açúcar</li>
-    <li>1 colher (sopa) de liga</li>
-    <li>1 colher (chá) de gordura para sorvete</li>
-    <li>2 colheres (sopa) de pó de erva-mate peneirada</li>
-  </ul>
-
-  <h3>Modo de preparo</h3>
-  <ol>
-    <li>Ferva o leite e misture o pó de erva-mate.</li>
-    <li>Deixe esfriar e bata no liquidificador.</li>
-    <li>Adicione açúcar e liga e bata por 3 minutos.</li>
-    <li>Leve ao freezer por 4 horas.</li>
-    <li>Bata novamente na batedeira até ficar cremoso.</li>
-    <li>Volte ao freezer até firmar.</li>
-  </ol>
-                    </p>
-<p>
-    Fonte:
-   https://www.escoladochimarrao.com.br/receitas-inf.php?cod=22
-
-  </p>
- </p>
-
-  <hr>
-
-  <h2>Pão com Erva-mate</h2>
-
-  <h3>Ingredientes</h3>
-  <ul>
-    <li>1 xícara de leite morno</li>
-    <li>1 colher (sopa) de fermento biológico seco</li>
-    <li>2 colheres (sopa) de açúcar</li>
-    <li>1/4 xícara de óleo</li>
-    <li>1 colher (chá) de sal</li>
-    <li>1 colher (sopa) de erva-mate</li>
-    <li>3 xícaras de farinha de trigo (aproximadamente)</li>
-  </ul>
-
-  <h3>Modo de preparo</h3>
-  <ol>
-    <li>Misture os ingredientes líquidos.</li>
-    <li>Adicione a erva-mate e a farinha aos poucos.</li>
-    <li>Sove a massa e deixe crescer.</li>
-    <li>Modele os pães.</li>
-    <li>Asse a 180°C por cerca de 30 minutos.</li>
-  </ol>
-
-  <p>
-    Fonte:
-   https://madrugada.com.br/pao-com-erva-mate/
-
-  </p>
-<h2>Pão de queijo de erva-mate</h2>
-
-  <h3>Ingredientes</h3>
-  <ul>
-    <li>3 ovos</li>
-    <li>1 xícara de leite</li>
-    <li>1/2 xícara de óleo</li>
-    <li>1 pitada de açúcar</li>
-    <li>Sal a gosto</li>
-    <li>2 colheres de sopa de queijo ralado</li>
-    <li>1/2 xícara de água fervendo</li>
-    <li>500 g de polvilho azedo</li>
-    <li>3 colheres de sopa de erva-mate</li>
-  </ul>
-
-  <h3>Modo de preparo</h3>
-  <ol>
-    <li>Junte ovos, leite, óleo, sal, açúcar, queijo ralado e água fervendo. Bata no liquidificador.</li>
-    <li>Acrescente parte do polvilho aos poucos e continue batendo.</li>
-    <li>Adicione o restante do polvilho e bata novamente.</li>
-    <li>Coe a erva-mate e adicione à mistura, batendo tudo.</li>
-    <li>Distribua em forminhas untadas.</li>
-    <li>Asse em forno pré-aquecido a 250ºC por cerca de 20 minutos.</li>
-  </ol>
-
-  <p>
-    Fonte:
-    https://g1.globo.com/rs/rio-grande-do-sul/noticia/receita-do-campo-aprenda-a-fazer-pao-de-queijo-com-erva-mate.ghtml
-
-  </p>
-
-  <hr>
-
-  <h2>Bala de erva-mate</h2>
-
-  <h3>Ingredientes</h3>
-  <ul>
-    <li>1 litro de melado</li>
-    <li>3 colheres de pó de erva-mate</li>
-    <li>150 g de nata</li>
-  </ul>
-
-  <h3>Modo de preparo</h3>
-  <ol>
-    <li>Misture o melado e a nata.</li>
-    <li>Ferva até desgrudar da panela.</li>
-    <li>Adicione o pó de erva-mate.</li>
-    <li>Despeje em superfície untada com manteiga.</li>
-    <li>Deixe esfriar e corte em pedaços.</li>
-    <li>Passe no açúcar.</li>
-  </ol>
-
-  <p>
-    Fonte:
-   https://www.escoladochimarrao.com.br/receitas-inf.php?cod=21
-
-  </p>
-
-  <hr>
-
-  <h2>Mousse de erva-mate</h2>
-
-  <h3>Ingredientes (15 porções)</h3>
-  <ul>
-    <li>3 colheres (sopa) de erva-mate</li>
-    <li>250 ml de água</li>
-    <li>1 pacote de gelatina de limão ou sem sabor</li>
-    <li>1 lata de leite condensado</li>
-    <li>1 lata de creme de leite</li>
-    <li>3 colheres (sopa) de açúcar de baunilha</li>
-  </ul>
-
-  <h3>Modo de preparo</h3>
-  <ol>
-    <li>Ferva a água com a gelatina e a erva-mate.</li>
-    <li>Coe a mistura.</li>
-    <li>Bata no liquidificador com os demais ingredientes.</li>
-    <li>Coloque em um refratário.</li>
-    <li>Leve à geladeira por 4 a 6 horas.</li>
-  </ol>
-
-  <p>
-    Fonte:
-    https://www.tudogostoso.com.br/receita/155628-mousse-de-erva-mate.html
-
-  </p>
-<h2>Bolo de erva-mate</h2>
-
-  <h3>Ingredientes (20 porções)</h3>
-  <ul>
-    <li>4 ovos</li>
-    <li>1 1/2 xícara de açúcar</li>
-    <li>1/2 xícara de leite morno</li>
-    <li>1/2 xícara de óleo</li>
-    <li>2 xícaras de farinha de trigo</li>
-    <li>5 colheres de sopa de erva-mate peneirada</li>
-    <li>1 sachê de fermento químico</li>
-  </ul>
-
-  <h3>Modo de preparo</h3>
-  <ol>
-    <li>Bata no liquidificador os ovos, açúcar, leite e óleo.</li>
-    <li>Em uma tigela, misture a erva-mate e a farinha peneiradas.</li>
-    <li>Junte tudo e misture bem por cerca de 5 minutos.</li>
-    <li>Adicione o fermento químico por último.</li>
-    <li>Coloque a massa em forma untada e leve ao forno preaquecido a 180–200°C por cerca de 30 minutos.</li>
-  </ol>
-
-  <p>
-    Fonte:
-    https://www.tudogostoso.com.br/receita/168832-bolo-de-erva-mate.html
-
-  </p>
-
-  <hr>
-
-  <h2>Chimarrão</h2>
-
-  <h3>Modo de preparo</h3>
-  <ol>
-    <li>Encha a cuia com 2/3 de erva-mate.</li>
-    <li>Forme o monte de erva inclinando a cuia.</li>
-    <li>Hidrate com água fria ou morna (não quente).</li>
-    <li>Insira a bomba corretamente, sem mexer depois.</li>
-    <li>Adicione água quente (70–80°C) sempre no mesmo ponto.</li>
-    <li>Sirva e reponha a água até o sabor acabar.</li>
-  </ol>
-
-  <p>
-    Fonte:
-   https://www.westwing.com.br/guiar/como-fazer-chimarrao/
-
-  </p>
-
-  <hr>
-
-  <h2>Tereré</h2>
-
-  <h3>Modo de preparo</h3>
-  <ol>
-    <li>Escolha a erva-mate adequada.</li>
-    <li>Encha a cuia até 2/3 e incline para acomodar a erva.</li>
-    <li>Adicione água gelada e aguarde alguns minutos.</li>
-    <li>Insira a bomba com o filtro voltado para baixo.</li>
-    <li>Beba e reabasteça com água gelada sempre que necessário.</li>
-  </ol>
-
-  <p>
-    Fonte:
-    https://blog.lojacocamar.com.br/como-fazer-terere/ 
-
-  </p>
-
-  <hr>
-
-  <h2>Pesto de erva-mate</h2>
-
-  <h3>Ingredientes</h3>
-  <ul>
-    <li>1 xícara de nozes, castanhas ou amêndoas</li>
-    <li>3/4 xícara de azeite de oliva</li>
-    <li>Sal a gosto</li>
-    <li>2 dentes de alho</li>
-    <li>10 folhas frescas de erva-mate</li>
-  </ul>
-
-  <h3>Modo de preparo</h3>
-  <ol>
-    <li>Bata todos os ingredientes no liquidificador.</li>
-    <li>Misture até obter uma textura pastosa.</li>
-    <li>Sirva em seguida.</li>
-  </ol>
-
-  <p>
-    Fonte:
-    https://redeglobo.globo.com/rpc/estudio-c/extras-estudio-c/noticia/aprenda-tres-receitas-deliciosas-com-erva-mate.ghtml
-
-  </p>
- <h2>Bolacha de Erva-Mate</h2>
-    <h3>Ingredientes</h3>
-    <ul>
-      <li>1 colher de sopa de erva-mate peneirada</li>
-      <li>2 colheres de sopa de óleo vegetal</li>
-      <li>150 gramas de farinha de aveia</li>
-      <li>1 banana caturra madura</li>
-    </ul>
-
-    <h3>Modo de preparo</h3>
-    <ol>
-      <li>Amasse bem a banana madura.</li>
-      <li>Adicione a erva-mate peneirada.</li>
-      <li>Acrescente parte do óleo e reserve o restante para untar a forma.</li>
-      <li>Adicione a farinha de aveia aos poucos até dar ponto de massa firme.</li>
-      <li>Unte a forma com óleo e modele as bolachas.</li>
-      <li>Asse em forno pré-aquecido a 200°C por cerca de 10 minutos.</li>
-    </ol>
-
-    <p>Fonte: <a href="https://receitas.globo.com/regionais/rpc/plug/bolacha-de-erva-mate.ghtml">Receitas Globo</a></p>
-  </section>
-
-  <hr>
-<h1>Massa Fresca com Erva-Mate</h1>
-
-        <section>
-            <h2>Ingredientes</h2>
-
-            <ul>
-                <li>250 g de farinha de trigo</li>
-                <li>2 ovos grandes</li>
-                <li>1 a 2 colheres de sopa de erva-mate fina (tipo para chimarrão, peneirada para retirar os paus maiores)</li>
-                <li>1 pitada de sal</li>
-                <li>Um fio de azeite (opcional, para dar liga)</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Modo de Preparo</h2>
-
-            <ol>
-                <li>
-                    <strong>Misturar os secos:</strong>
-                    Em uma tigela ou sobre a bancada, faça um monte com a farinha de trigo,
-                    o sal e a erva-mate. Misture bem.
-                </li>
-
-                <li>
-                    <strong>Adicionar os líquidos:</strong>
-                    Faça um buraco no centro, formando um "vulcão", e quebre os ovos dentro.
-                </li>
-
-                <li>
-                    <strong>Sovar a massa:</strong>
-                    Incorpore os ovos na farinha aos poucos, usando um garfo ou as pontas
-                    dos dedos. Quando começar a grudar, amasse com as mãos por cerca de
-                    10 minutos até que a massa fique lisa, elástica e homogênea.
-                </li>
-
-                <li>
-                    <strong>Descansar:</strong>
-                    Cubra a massa com plástico-filme e deixe descansar por 30 minutos
-                    em temperatura ambiente.
-                </li>
-
-                <li>
-                    <strong>Abrir e cortar:</strong>
-                    Abra a massa bem fina com um rolo ou com a ajuda de um cilindro de
-                    macarrão. Enrole a massa levemente polvilhada com farinha e corte
-                    no formato desejado, como fettuccine ou tagliatelle.
-                </li>
-
-                <li>
-                    <strong>Cozinhar:</strong>
-                    Cozinhe a massa fresca em bastante água fervente com sal por
-                    2 a 3 minutos, ou até ficar al dente.
-                </li>
-            </ol>
-        </section>
-
-        <div class="observacao">
-            <strong>Dica:</strong> A quantidade de erva-mate pode ser ajustada de acordo
-            com a intensidade de sabor e cor desejada na massa.
-        </div>
-
-                
-  <section>
-    <h2>Alfajor de Erva-Mate</h2>
-    <h3>Ingredientes (20 porções)</h3>
-    <ul>
-      <li>3 gemas</li>
-      <li>200 g de manteiga ou margarina</li>
-      <li>2 xícaras de açúcar</li>
-      <li>200 g de amido de milho</li>
-      <li>1 colher de sopa de açúcar de baunilha</li>
-      <li>1 colher de sopa de fermento em pó</li>
-      <li>2 colheres de sopa de erva-mate</li>
-      <li>400 g de farinha de trigo</li>
-    </ul>
-
-    <h3>Modo de preparo</h3>
-    <ol>
-      <li>Misture gemas, açúcar e manteiga em temperatura ambiente.</li>
-      <li>Adicione erva-mate, baunilha, amido, fermento e farinha.</li>
-      <li>Misture até formar massa homogênea.</li>
-      <li>Sove até não grudar nas mãos.</li>
-      <li>Abra a massa com rolo e corte em discos.</li>
-      <li>Asse por cerca de 10 minutos.</li>
-      <li>Recheie com doce de leite e finalize com coco ralado.</li>
-    </ol>
-
-    <p>Fonte: <a href="https://www.tudogostoso.com.br/receita/77955-alfajor-de-erva-mate.html">TudoGostoso</a></p>
-  </section>
-
-  <hr>
-
-  <section>
-    <h2>Farofa de Erva-Mate</h2>
-    <h3>Ingredientes</h3>
-    <ul>
-      <li>2 colheres de sopa de erva-mate</li>
-      <li>2 cebolas roxas</li>
-      <li>4 dentes de alho</li>
-      <li>3 xícaras de farinha de mandioca</li>
-      <li>200 g de manteiga</li>
-      <li>1 pitada de sal</li>
-      <li>1 limão siciliano</li>
-    </ul>
-
-    <h3>Modo de preparo</h3>
-    <ol>
-      <li>Refogue alho e cebola na manteiga.</li>
-      <li>Adicione sal e misture bem.</li>
-      <li>Acrescente a farinha de mandioca e cozinhe bem.</li>
-      <li>Finalize adicionando a erva-mate.</li>
-      <li>Finalize com raspas de limão siciliano.</li>
-    </ol>
-
-    <p>Fonte: <a href="https://receitas.globo.com/receitas-da-tv/perto-do-fogo/como-fazer-farofa-de-erva-mate-gnt.ghtml">Receitas Globo</a></p>
-
-      
-      
-      <h2>Smoothie Energético com Erva-Mate</h2>
-
-            <p>
-                Perfeito para antes do treino ou como café da manhã rápido.
-                A cafeína do mate fornece energia gradual, como exploramos no
-                artigo sobre erva-mate e desempenho esportivo.
-            </p>
-
-            <h3>Ingredientes</h3>
-
-            <ul>
-                <li>200 ml de infusão fria de erva-mate (1 colher de sopa de erva para 200 ml de água, coar após 5 minutos)</li>
-                <li>1 banana congelada</li>
-                <li>1 colher de sopa de pasta de amendoim</li>
-                <li>1 colher de sopa de cacau em pó</li>
-                <li>1 colher de chá de mel (opcional)</li>
-                <li>Gelo a gosto</li>
-            </ul>
-
-            <h3>Modo de preparo</h3>
-
-            <ol>
-                <li>Prepare a infusão de erva-mate com água a 80 graus e deixe esfriar completamente.</li>
-                <li>Bata todos os ingredientes no liquidificador por 1 minuto.</li>
-                <li>Sirva imediatamente.</li>
-            </ol>
-
-            <aside>
-                <strong>Dica:</strong>
-                para uma versão proteica, adicione 1 scoop de whey protein
-                sabor baunilha.
-            </aside>
-        </section>
-
-        <section>
-
-            
-            <h2>Marinada para Churrasco com Erva-Mate</h2>
-
-            <p>
-                Esta é possivelmente a combinação mais gaúcha possível:
-                erva-mate e churrasco. A marinada adiciona um toque defumado
-                e herbáceo à carne, além de ajudar a amaciá-la graças aos
-                compostos ácidos do mate.
-            </p>
-
-            <h3>Ingredientes</h3>
-
-            <ul>
-                <li>3 colheres de sopa de erva-mate moída grossa</li>
-                <li>500 ml de água quente (80 graus)</li>
-                <li>3 dentes de alho picados</li>
-                <li>1 cebola ralada</li>
-                <li>2 colheres de sopa de azeite</li>
-                <li>1 colher de sopa de mostarda</li>
-                <li>Sal grosso e pimenta-do-reino a gosto</li>
-                <li>Suco de 1 limão</li>
-            </ul>
-
-            <h3>Modo de preparo</h3>
-
-            <ol>
-                <li>
-                    Prepare uma infusão concentrada: despeje a água quente
-                    sobre a erva-mate moída grossa e deixe por 15 minutos.
-                    Coe bem.
-                </li>
-                <li>
-                    Misture a infusão de mate com alho, cebola, azeite,
-                    mostarda, sal, pimenta e limão.
-                </li>
-                <li>
-                    Marine a carne (funciona especialmente bem com fraldinha,
-                    costela ou picanha) por no mínimo 4 horas na geladeira,
-                    preferencialmente de um dia para o outro.
-                </li>
-                <li>
-                    Asse na churrasqueira como de costume.
-                </li>
-            </ol>
-
-            <aside>
-                <strong>Dica:</strong>
-                a acidez do mate amacia as fibras da carne. Carnes mais duras
-                como acém e paleta se beneficiam especialmente desta marinada.
-            </aside>    
-
-
-            
-            <h1>Pudim de Erva-Mate Tostada</h1>
-
-    <p>
-      O pudim de erva-mate funciona melhor com mate tostado, porque as notas
-      de caramelo combinam naturalmente com a calda. O resultado lembra pudim
-      de café, mas com um aroma mais brasileiro e menos torrado.
-    </p>
-
-    <h2>Ingredientes</h2>
-
-    <ul>
-      <li>1 lata de leite condensado</li>
-      <li>2 medidas da lata de leite integral</li>
-      <li>3 ovos</li>
-      <li>3 colheres de sopa de erva-mate tostada</li>
-      <li>1 xícara de açúcar para a calda</li>
-      <li>1/3 de xícara de água quente para a calda</li>
-    </ul>
-
-    <h2>Modo de preparo</h2>
-
-    <ol>
-      <li>
-        Aqueça o leite com a erva-mate tostada até quase ferver. Desligue,
-        tampe e deixe em infusão por 15 minutos. Coe e espere amornar.
-      </li>
-
-      <li>
-        Faça a calda: derreta o açúcar até dourar, adicione a água quente
-        com cuidado e mexa até dissolver. Espalhe na forma de pudim.
-      </li>
-
-      <li>
-        Bata no liquidificador o leite condensado, o leite infusionado e
-        os ovos por 1 minuto.
-      </li>
-
-      <li>
-        Despeje na forma caramelizada, cubra com papel-alumínio e asse em
-        banho-maria a 180&nbsp;&deg;C por cerca de 1 hora.
-      </li>
-
-      <li>
-        Gele por pelo menos 4 horas antes de desenformar.
-      </li>
-    </ol>
-
-    <h2>Dica</h2>
-
-    <p>
-      Não use erva-mate verde muito amarga nesta receita. A versão tostada
-      deixa o pudim mais redondo e evita sabor vegetal excessivo.
-    </p>  
-            <\p>receita: https://meuchimarrao.com.br/blog/erva-mate-na-culinaria-receitas/ <\p>
-                </section>
-
-
-
-                <!-- =========================================
-                     BLOCO 2
-                     
-                     TEXTO + IMAGEM
-                     
-                     O estudante pode utilizar este modelo
-                     quando quiser colocar uma fotografia.
-                ========================================== -->
-
-                <section class="bloco-conteudo bloco-com-imagem">
-
-
-                    <div class="bloco-texto">
-
-
-                        <p class="rotulo-secao">
-                            SEGUNDO ASSUNTO
-                        </p>
-
-
-                        <h2>
-                           texto segundo
-                        </h2>
-
-
-                        <p>
-
-                            Escreva aqui o texto relacionado
-                            à fotografia.
-
-                        </p>
-
-
-                    </div>
-
-
-
-                    <figure class="imagem-conteudo">
-
-
-                        <!--
-                            TROQUE:
-                            
-                            nome-da-pasta
-                            
-                            pelo nome da pasta da sua página.
-                            
-                            Exemplos:
-                            
-                            projetos
-                            historia
-                            lendas
-                            plantio
-                            mudas
-                            receitas
-                        -->
-
-
-                        <img
-                            src="../imagens/nome-da-pasta/nome-da-imagem.jpg"
-                            alt="Descreva o que aparece na imagem"
-                        >
-
-
-                        <figcaption>
-
-                            Escreva aqui uma pequena legenda
-                            para a imagem.
-
-                        </figcaption>
-
-
-                    </figure>
-
-
-                </section>
-
-
-
-                <!-- =========================================
-                     BLOCO 3
-                     
-                     NOVO ASSUNTO
-                     
-                     Este bloco pode ser copiado quantas
-                     vezes forem necessárias.
-                ========================================== -->
-
-                <section class="bloco-conteudo">
-
-
-                    <p class="rotulo-secao">
-                        NOVO ASSUNTO
-                    </p>
-
-
-                    <h2>
-                        Título do assunto
-                    </h2>
-
-
-                    <p>
-
-                        Escreva aqui as informações deste
-                        novo assunto.
-
-                    </p>
-
-
-                </section>
-
-
-
-                <!-- =========================================
-                     IMPORTANTE
-                     
-                     O estudante pode COPIAR qualquer bloco
-                     acima para criar novos assuntos.
-                     
-                     Sempre copie o bloco completo:
-                     
-                     <section>
-                     
-                     até
-                     
-                     </section>
-                ========================================== -->
-
-
+                <div class="grid-receitas" id="gridReceitas"></div>
             </div>
-
         </section>
-
-
     </main>
 
-
-
-    <!-- =====================================================
-         RODAPÉ
-         
-         NÃO ALTERAR
-    ====================================================== -->
+    <div class="modal" id="modalReceita">
+        <div class="modal-conteudo">
+            <button class="modal-fechar" onclick="fecharModal()">&times;</button>
+            <div id="conteudoModal"></div>
+        </div>
+    </div>
 
     <footer class="rodape-principal">
-
-
         <div class="container rodape-conteudo">
-
-
             <div>
-
-
-                <p class="rodape-titulo">
-                    Clube de Ciências Ouro Verde
-                </p>
-
-
-                <p>
-                    Colégio Estadual do Campo Professor Eugênio de Almeida
-                </p>
-
-
+                <p class="rodape-titulo">Clube de Ciências Ouro Verde</p>
+                <p>Colégio Estadual do Campo Professor Eugênio de Almeida</p>
             </div>
-
-
-
             <div class="rodape-localizacao">
-
-
-                <p>
-                    Ensino Fundamental, Médio e Técnico
-                </p>
-
-
-                <p>
-                    Distrito de Fluviópolis
-                </p>
-
-
-                <p>
-                    São Mateus do Sul — Paraná
-                </p>
-
-
+                <p>Ensino Fundamental, Médio e Técnico</p>
+                <p>Distrito de Fluviópolis</p>
+                <p>São Mateus do Sul — Paraná</p>
             </div>
-
-
         </div>
-
-
-
-        <div class="rodape-final">
-
-
-            <p>
-                © 2026 Clube de Ciências Ouro Verde
-            </p>
-
-
-        </div>
-
-
+        <div class="rodape-final">© 2026 Clube de Ciências Ouro Verde</div>
     </footer>
 
+    <script>
+        const receitas = [
+            {
+                id: 1,
+                titulo: "Brigadeiro de Erva-Mate",
+                <img src= "eduardojurach/Site-do-Clube-passo-a-passo/blob/main/imagens/eduardo/brigadeiro_de_erva_mate.jpg> alt=<imagem gerada por IA a partir da receita>,
+                tempo: "20 min",
+                porcoes: "10",
+                dificuldade: "Fácil",
+                avaliacoes: 4.5,
+                totalAvaliacoes: 23,
+                ingredientes: ["1 lata de leite condensado", "1 colher de sopa de manteiga", "1 colher de sobremesa de erva-mate peneirada", "200 g de chocolate ao leite", "Corante verde (opcional)"],
+                preparo: ["Derreta o chocolate em banho-maria.", "Coloque o chocolate derretido em forminhas e leve à geladeira.", "Em uma panela, coloque o leite condensado, a manteiga e a erva-mate peneirada.", "Cozinhe em fogo baixo, mexendo sempre até desgrudar do fundo da panela.", "Adicione algumas gotas de corante verde antes do ponto final.", "Desenforme os copinhos de chocolate e preencha com o brigadeiro."],
+                fonte: "TudoGostoso"
+            },
+            {
+                id: 2,
+                titulo: "Pão de Ló com Erva-Mate",
+                emoji: "🍰",
+                tempo: "50 min",
+                porcoes: "8",
+                dificuldade: "Média",
+                avaliacoes: 4.8,
+                totalAvaliacoes: 18,
+                ingredientes: ["5 ovos", "3 colheres de sopa de suco de laranja", "15 colheres de sopa de açúcar", "15 colheres de sopa de farinha de trigo", "1½ colher de fermento químico", "3 colheres de sopa de pó de erva-mate", "100 g de nozes tostadas", "100 g de goiabada picada"],
+                preparo: ["Separe as claras das gemas.", "Bata as claras até ponto de neve, depois adicione açúcar.", "Acrescente as gemas uma a uma.", "Misture farinha, erva-mate e fermento.", "Transfira para forma untada, distribua nozes e goiabada.", "Asse a 180°C por 35 minutos."],
+                fonte: "Bons Fluidos"
+            },
+            {
+                id: 3,
+                titulo: "Sorvete de Erva-Mate",
+                emoji: "🍦",
+                tempo: "240 min",
+                porcoes: "12",
+                dificuldade: "Fácil",
+                avaliacoes: 4.6,
+                totalAvaliacoes: 31,
+                ingredientes: ["1 litro de leite", "1½ xícara de açúcar", "1 colher de sopa de liga", "2 colheres de sopa de pó de erva-mate"],
+                preparo: ["Ferva o leite e misture o pó de erva-mate.", "Deixe esfriar e bata no liquidificador.", "Adicione açúcar e liga, bata por 3 minutos.", "Leve ao freezer por 4 horas.", "Bata novamente até ficar cremoso.", "Volte ao freezer até firmar."],
+                fonte: "Escola do Chimarrão"
+            },
+            {
+                id: 4,
+                titulo: "Pão com Erva-Mate",
+                <img src= "eduardojurach/Site-do-Clube-passo-a-passo/blob/main/imagens/eduardo/bolo_de_erva_mate.jpg> alt=<imagem gerada por IA a partir da receita>,
+                tempo: "120 min",
+                porcoes: "8",
+                dificuldade: "Média",
+                avaliacoes: 4.3,
+                totalAvaliacoes: 15,
+                ingredientes: ["1 xícara de leite morno", "1 colher de sopa de fermento biológico", "2 colheres de sopa de açúcar", "¼ xícara de óleo", "1 colher de chá de sal", "1 colher de sopa de erva-mate", "3 xícaras de farinha de trigo"],
+                preparo: ["Misture ingredientes líquidos.", "Adicione erva-mate e farinha aos poucos.", "Sove a massa bem até ficar macia.", "Deixe crescer por 1 hora.", "Modele os pães e coloque em forma.", "Asse a 180°C por 30 minutos."],
+                fonte: "Madrugada"
+            },
+            {
+                id: 5,
+                titulo: "Pão de Queijo de Erva-Mate",
+                emoji: "🧀",
+                tempo: "35 min",
+                porcoes: "24",
+                dificuldade: "Fácil",
+                avaliacoes: 4.7,
+                totalAvaliacoes: 42,
+                ingredientes: ["3 ovos", "1 xícara de leite", "½ xícara de óleo", "2 colheres de sopa de queijo ralado", "½ xícara de água fervendo", "500 g de polvilho azedo", "3 colheres de sopa de erva-mate"],
+                preparo: ["Bata ovos, leite, óleo, sal e queijo no liquidificador.", "Adicione água fervendo.", "Acrescente polvilho aos poucos.", "Coe a erva-mate e adicione à mistura.", "Distribua em forminhas.", "Asse a 250°C por 20 minutos."],
+                fonte: "G1 Rio Grande do Sul"
+            },
+            {
+                id: 6,
+                titulo: "Chimarrão Tradicional",
+                emoji: "🍵",
+                tempo: "5 min",
+                porcoes: "4",
+                dificuldade: "Fácil",
+                avaliacoes: 5.0,
+                totalAvaliacoes: 87,
+                ingredientes: ["Erva-mate de qualidade", "Água quente (70-80°C)", "Cuia", "Bomba"],
+                preparo: ["Encha a cuia com 2/3 de erva-mate.", "Forme o monte inclinando a cuia.", "Hidrate com água morna.", "Insira a bomba corretamente.", "Adicione água quente no mesmo ponto.", "Sirva e reponha a água até o sabor acabar."],
+                fonte: "Westwing"
+            },
+            {
+                id: 7,
+                titulo: "Tereré Gelado",
+                emoji: "🧊",
+                tempo: "5 min",
+                porcoes: "4",
+                dificuldade: "Fácil",
+                avaliacoes: 4.9,
+                totalAvaliacoes: 56,
+                ingredientes: ["Erva-mate fina", "Água gelada", "Gelo", "Cuia", "Bomba"],
+                preparo: ["Escolha erva-mate adequada.", "Encha a cuia até 2/3 e incline.", "Adicione água gelada.", "Insira a bomba com filtro para baixo.", "Beba e reabasteça com água gelada conforme necessário."],
+                fonte: "Coca Mar"
+            },
+            {
+                id: 8,
+                titulo: "Mousse de Erva-Mate",
+                emoji: "☁️",
+                tempo: "270 min",
+                porcoes: "15",
+                dificuldade: "Fácil",
+                avaliacoes: 4.4,
+                totalAvaliacoes: 19,
+                ingredientes: ["3 colheres de sopa de erva-mate", "250 ml de água", "1 pacote de gelatina de limão", "1 lata de leite condensado", "1 lata de creme de leite", "3 colheres de sopa de açúcar"],                                                          
+                preparo: ["Ferva água com gelatina e erva-mate.", "Coe a mistura.", "Bata no liquidificador com outros ingredientes.", "Coloque em refratário.", "Leve à geladeira de 4 a 6 horas."],
+                fonte: "TudoGostoso"
+            }
+            id: 9,
+            titulo: "Pesto de erva-mate"
+            emoji:
+            tempo: "20 min"
+            porções: "6"
+            dificuldade:"fácil"
+            avaliações: "3,5"
+            totalAvaliacoes: "18"
+            ingredientes:["1 xícara de nozes, castanhas ou amêndoas.", "3/4 xícara de azeite de oliva.", "Sal a gosto.", "2 dentes de alho.", "10 folhas frescas de erva-mate."],
+            preparo: ["Bata todos os ingredientes no liquidificador.]"
+            fonte: "https://redeglobo.globo.com/rpc/estudio-c/extras-estudio-c/noticia/aprenda-tres-receitas-deliciosas-com-erva-mate.ghtml"
 
+            }
+
+  {
+            id: 10,
+            titulo: "Bolacha de Erva-Mate"
+            emoji:
+            tempo:" 20 min"
+            porções: "10"
+            dificuldade: "fácil"
+            avaliações:"5,5"
+            totalAvaliacoes:" 20" 
+            ingredientes: ["1 colher de sopa de erva-mate peneirada.", "2 colheres de sopa de óleo vegetal.", "150 gramas de farinha de aveia.", "1 banana caturra."],
+            preparo:["1-Comece amassando a banana caturra que precisa estar bem madura.", "2-Acrescente a erva-mate peneirada;" "3-Adicione parte do óleo na mistura e reserve o restante para untar a forma;" "4-Adicione a aveia aos poucos até dar o ponto, quando a massa começa a ficar mais firme; ""5-Unte a forma com óleo e comece a modelas as bolachas; ""6-No forno pré-aquecido a 200ºC, leve as bolachas para assar por 10 minutos." ]
+            fonte: "https://receitas.globo.com/regionais/rpc/plug/bolacha-de-erva-mate.ghtml "
+
+            }
+
+  {
+            id: "11"
+            titulo:"Alfajor de erva mate"
+            emoji:
+            tempo:"15"
+            porções:"20"
+            dificuldade: "média"
+            avaliações:"5,0"
+            totalAvaliacoes:"18" 
+            ingredientes:["3 gemas.","200 g de manteiga ou margarina.", "2 xícaras (chá) de açúcar.", "200 g de amido de milho.", "1 colher (sopa) de açúcar de baunilha.", "1 colher (sopa) de fermento em pó.", "2 colheres (sopa) de erva mate.', "400 g de farinha de trigo."],
+            preparo:["1-Em uma vasilha, coloque as gemas, o açúcar, a margarina (temperatura ambiente) e misture.", "2-Acrescente a erva mate, o açúcar de baunilha, amido de milho, o fermento e a farinha.", "3-Misture com as mãos.", "4-Coloque a farinha em uma mesa limpa e sove a massa.", "5-A massa está pronta quando não grudar nas mãos. Estique a massa com o auxílio de um rolo. A massa é delicada, mas não a deixe muito fina.", "6-Utilize a boca de um copo como forma (também podem ser usados outros formatos). Coloque a massa em uma forma untada por 10 minutos.", "7-Não deixe por mais tempo, porque os pequenos discos podem se quebrar.", "8-Monte o alfajor com dois discos.", "9-Coloque doce de leite e polvilhe com coco ralado."]
+            fonte: https:"//www.tudogostoso.com.br/receita/77955-alfajor-de-erva-mate.html"
+
+            }
+
+
+
+
+        
+  {
+            id: "12"
+            titulo:>"Marinada para Churrasco com Erva-Mate"
+            emoji:
+            tempo:"30"
+            porções:"10"
+            dificuldade: "facil"
+            avaliações: "5,5"
+            totalAvaliacoes: "19"
+            ingredientes:["3 colheres de sopa de erva-mate moída grossa.", "500 ml de água quente (80 graus).", "3 dentes de alho picados.", "1 cebola ralada.", "2 colheres de sopa de azeite.", "1 colher de sopa de mostarda.", "Sal grosso e pimenta-do-reino a gosto.", "Suco de 1 limão."],
+            preparo:["Prepare uma infusão concentrada: despeje a água quente sobre a erva-mate moída grossa e deixe por 15 minutos.", "Coe bem.", "Misture a infusão de mate com alho, cebola, azeite, mostarda, sal, pimenta e limão.", "Marine a carne (funciona especialmente bem com fraldinha.costela ou picanha) por no mínimo 4 horas na geladeira.", "preferencialmente de um dia para o outro.", "Asse na churrasqueira como de costume."],
+            fonte: "receita: https://meuchimarrao.com.br/blog/erva-mate-na-culinaria-receitas/"
+            }
+        ];
+
+        function renderizarReceitas() {
+            const grid = document.getElementById('gridReceitas');
+            grid.innerHTML = receitas.map(receita => `
+                <div class="card-receita">
+                    <div class="card-receita-imagem">${receita.emoji}</div>
+                    <div class="card-receita-conteudo">
+                        <h2 class="card-receita-titulo">${receita.titulo}</h2>
+                        <div class="card-receita-info">
+                            <span>⏱️ ${receita.tempo}</span>
+                            <span>🍽️ ${receita.porcoes}</span>
+                            <span>📊 ${receita.dificuldade}</span>
+                        </div>
+                        <div class="card-receita-avaliacao">
+                            <div class="estrelas">${'★'.repeat(Math.round(receita.avaliacoes))}</div>
+                            <small>${receita.avaliacoes} (${receita.totalAvaliacoes})</small>
+                        </div>
+                        <button class="card-receita-botao" onclick="abrirModal(${receita.id})">Ver Receita →</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function abrirModal(id) {
+            const receita = receitas.find(r => r.id === id);
+            const modal = document.getElementById('modalReceita');
+            const conteudo = document.getElementById('conteudoModal');
+
+            conteudo.innerHTML = `
+                <h2 class="modal-titulo">${receita.titulo}</h2>
+                <div class="modal-secao">
+                    <strong>⏱️ Tempo:</strong> ${receita.tempo}<br>
+                    <strong>🍽️ Porções:</strong> ${receita.porcoes}<br>
+                    <strong>📊 Dificuldade:</strong> ${receita.dificuldade}
+                </div>
+                <div class="modal-secao">
+                    <h3>Ingredientes</h3>
+                    <ul>${receita.ingredientes.map(ing => `<li>${ing}</li>`).join('')}</ul>
+                </div>
+                <div class="modal-secao">
+                    <h3>Modo de Preparo</h3>
+                    <ol>${receita.preparo.map(passo => `<li>${passo}</li>`).join('')}</ol>
+                </div>
+                <div class="modal-fonte"><strong>Fonte:</strong> ${receita.fonte}</div>
+            `;
+
+            modal.classList.add('ativo');
+        }
+
+        function fecharModal() {
+            document.getElementById('modalReceita').classList.remove('ativo');
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('modalReceita');
+            if (event.target === modal) {
+                fecharModal();
+            }
+        }
+
+        renderizarReceitas();
+    </script>
 </body>
-
 </html>

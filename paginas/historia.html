@@ -2,95 +2,437 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Clube de Ciências Ouro Verde - Colégio Estadual do Campo Professor Eugênio de Almeida.">
-    <meta name="author" content="Clube de Ciências Ouro Verde">
-    <meta name="theme-color" content="#123d24">
-
-    <!-- =========================================
-         TÍTULO DA PÁGINA
-         Troque somente o nome antes da barra.
-         Exemplo: Projetos | Clube de Ciências Ouro Verde
-    ========================================== -->
-    <title>NOME DA PÁGINA | Clube de Ciências Ouro Verde</title>
-
-    <!-- Fontes -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <meta
+        name="description"
+        content="Site do Clube de Ciências Ouro Verde do Colégio Estadual do Campo Professor Eugênio de Almeida."
+    >
+    <meta
+        name="author"
+        content="Clube de Ciências Ouro Verde"
+    >
+    <meta
+        name="theme-color"
+        content="#123d24"
+    >
+    <title>Clube de Ciências Ouro Verde</title>
+    <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/style.css?v=4">
-    <link rel="stylesheet" href="../css/paginas.css?v=4">
-    <link rel="stylesheet" href="../css/responsivo.css?v=4">
+    <link rel="stylesheet" href="css/style.css?v=3">
+    <link rel="stylesheet" href="css/hero.css?v=3">
+    <link rel="stylesheet" href="css/responsivo.css?v=3">
 </head>
-
 <body>
-
-    <!-- =========================================
-         CABEÇALHO DAS PÁGINAS INTERNAS
-         (não alterar)
-    ========================================== -->
-    <header class="topo-interno">
-        <div class="topo-interno-conteudo">
-
-            <a class="topo-logo" href="../index.html" aria-label="Voltar para a página inicial">
-                <img src="../imagens/logos/logo-eugenio.png" alt="Logo do Colégio Estadual do Campo Professor Eugênio de Almeida">
-            </a>
-
-            <div class="topo-interno-texto">
-                <p class="topo-clube">Clube de Ciências</p>
-                <p class="topo-ouro-verde">Ouro Verde</p>
-                <p class="topo-escola">Colégio Estadual do Campo Professor Eugênio de Almeida</p>
+    <!-- ======================================
+         CABEÇALHO / BANNER
+    ======================================= -->
+    <header
+        class="cabecalho-principal"
+        id="inicio"
+    >
+        <div class="cabecalho-sobreposicao">
+            <div class="cabecalho-conteudo">
+                <!-- LOGO DO COLÉGIO -->
+                <div class="area-logo area-logo-colegio">
+                    <a
+                        class="cabecalho-logo logo-colegio"
+                        href="index.html"
+                        aria-label="Página inicial"
+                    >
+                        <img
+                            src="imagens/logos/logo-eugenio.png"
+                            alt="Logotipo do Colégio Estadual do Campo Professor Eugênio de Almeida"
+                        >
+                    </a>
+                </div>
+                <!-- NOME DO SITE -->
+                <div class="cabecalho-texto">
+                    <p class="cabecalho-linha-menor">
+                        Clube de Ciências
+                    </p>
+                    <h1>
+                        Ouro Verde
+                    </h1>
+                    <div class="linha-decorativa"></div>
+                    <p class="cabecalho-escola">
+                        Colégio Estadual do Campo Professor Eugênio de Almeida
+                    </p>
+                    <p class="cabecalho-niveis">
+                        Ensino Fundamental, Médio e Técnico
+                    </p>
+                    <p class="cabecalho-local">
+                        Distrito de Fluviópolis • São Mateus do Sul • Paraná
+                    </p>
+                </div>
+                <!-- LOGO DO CLUBE -->
+                <div class="area-logo">
+                    <a
+                        class="cabecalho-logo"
+                        href="index.html"
+                        aria-label="Clube de Ciências Ouro Verde"
+                    >
+                        <img
+                            src="imagens/logos/logo-clube.png"
+                            alt="Logo do Clube de Ciências Ouro Verde"
+                        >
+                    </a>
+                </div>
             </div>
-
-            <a class="topo-logo" href="../index.html" aria-label="Voltar para a página inicial">
-                <img src="../imagens/logos/logo-clube.png" alt="Logo do Clube de Ciências Ouro Verde">
-            </a>
-
         </div>
     </header>
-
-    <!-- =========================================
+    <!-- ======================================
          MENU PRINCIPAL
-         (não alterar)
-    ========================================== -->
-    <nav class="menu-principal" aria-label="Menu principal">
+    ======================================= -->
+    <nav
+        class="menu-principal"
+        aria-label="Menu principal"
+    >
         <div class="menu-container">
-            <a class="menu-marca" href="../index.html">Ouro Verde</a>
+            <a
+                class="menu-marca"
+                href="#inicio"
+            >
+                Ouro Verde
+            </a>
             <ul class="menu-lista">
-                <li><a href="../index.html">Início</a></li>
-                <li><a href="historia.html">História</a></li>
-                <li><a href="lendas-folclore.html">Lendas</a></li>
-                <li><a href="plantio-cuidados.html">Plantio</a></li>
-                <li><a href="producao-mudas.html">Produção de Mudas</a></li>
-                <li><a href="receitas.html">Receitas</a></li>
-                <li><a href="projetos.html">Projetos</a></li>
-                <li><a href="galeria.html">Galeria</a></li>
-                <li><a href="noticias.html">Notícias</a></li>
+                <li>
+                    <a
+                        class="menu-ativo"
+                        href="index.html"
+                    >
+                        Início
+                    </a>
+                </li>
+
+                <li>
+                    <a href="paginas/historia.html">
+                        História
+                    </a>
+                </li>
+                <li>
+                    <a href="paginas/lendas-folclore.html">
+                        Lendas
+                    </a>
+                </li>
+
+                <li>
+                    <a href="paginas/plantio-cuidados.html">
+                        Plantio
+                    </a>
+                </li>
+
+                <li>
+                    <a href="paginas/producao-mudas.html">
+                        Produção de Mudas
+                    </a>
+                </li>
+
+                <li>
+                    <a href="paginas/receitas.html">
+                        Receitas
+                    </a>
+                </li>
+
+                <li>
+                    <a href="paginas/projetos.html">
+                        Projetos
+                    </a>
+                </li>
+                <li>
+                    <a href="paginas/galeria.html">
+                        Galeria
+                    </a>
+                </li>
+                <li>
+                    <a href="paginas/noticias.html">
+                        Notícias
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
-
-    <!-- =========================================
-         CONTEÚDO PRINCIPAL DA PÁGINA
-    ========================================== -->
-    <main class="pagina-interna">
-
-        <!-- =====================================
-             ABERTURA DA PÁGINA
-             O estudante deve trocar:
-             1. o pequeno texto (rótulo)
-             2. o título
-             3. a apresentação (frase de introdução)
-        ====================================== -->
-        <section class="abertura-pagina">
-            <div class="container">
-                <p class="rotulo-secao">Clube de Ciências Ouro Verde</p>
-                <h1>NOME DA PÁGINA</h1>
+    <!-- ======================================
+         CONTEÚDO PRINCIPAL
+    ======================================= -->
+    <main>
+        <!-- APRESENTAÇÃO -->
+        <section class="secao-apresentacao">
+            <div class="container apresentacao-conteudo">
+                <p class="rotulo-secao">
+                    Ciência • natureza • tecnologia
+                </p>
+                <h2 class="titulo-secao">
+                    Conhecimento que nasce da nossa terra
+                </h2>
                 <div class="linha-titulo"></div>
-                <p class="introducao-pagina">Escreva aqui uma pequena frase apresentando o assunto desta página.</p>
+                <p class="texto-destaque">
+                    O Clube de Ciências Ouro Verde é um espaço de pesquisa,
+                    experimentação e protagonismo estudantil.
+                </p>
+                <p class="texto-apresentacao">
+                    Aqui, ciência e cultura se encontram para investigar a
+                    erva-mate, valorizar os conhecimentos da nossa região,
+                    desenvolver novas tecnologias e aproximar os estudantes
+                    da pesquisa científica.
+                </p>
             </div>
+        </section>
+        <!-- ======================================
+             CARDS DAS PÁGINAS
+        ======================================= -->
+        <section class="secao-acessos">
+            <div class="container">
+                <div class="cabecalho-secao">
+                    <div>
+                        <p class="rotulo-secao">
+                            Explore e descubra
+                        </p>
+                        <h2 class="titulo-secao">
+                            Conheça a erva-mate
+                        </h2>
+                    </div>
+                    <p class="descricao-secao">
+                        História, cultura, cultivo, produção de mudas e
+                        diferentes formas de utilização da erva-mate.
+                    </p>
+                </div>
+                <div class="grade-cards">
+                    <!-- HISTÓRIA -->
+
+                    <article class="card-acesso">
+                        <a
+                            class="card-imagem-link"
+                            href="paginas/historia.html"
+                        >
+                            <img
+                                class="card-imagem"
+                                src="imagens/logos/historia.png"
+                                alt="Representação da história da erva-mate"
+                            >
+                        </a>
+                        <div class="card-conteudo">
+                            <span class="card-numero">
+                                01
+                            </span>
+                            <h3>
+                                História
+                            </h3>
+                            <p>
+                                Conheça as origens da erva-mate e sua
+                                importância histórica, cultural e econômica.
+                            </p>
+                            <a
+                                class="botao-card"
+                                href="paginas/historia.html"
+                            >
+                                Descobrir →
+                            </a>
+                        </div>
+
+                    </article>
+                    <!-- LENDAS -->
+                    <article class="card-acesso">
+                        <a
+                            class="card-imagem-link"
+                            href="paginas/lendas-folclore.html"
+                        >
+                            <img
+                                class="card-imagem"
+                                src="imagens/logos/lendas.png"
+                                alt="Representação das lendas relacionadas à erva-mate"
+                            >
+                        </a>
+                        <div class="card-conteudo">
+                            <span class="card-numero">
+                                02
+                            </span>
+                            <h3>
+                                Lendas e Folclore
+                            </h3>
+                            <p>
+                                Descubra histórias, personagens e tradições
+                                transmitidas ao longo das gerações.
+                            </p>
+                            <a
+                                class="botao-card"
+                                href="paginas/lendas-folclore.html"
+                            >
+                                Descobrir →
+                            </a>
+                        </div>
+                    </article>
+                    <!-- PLANTIO -->
+                    <article class="card-acesso">
+                        <a
+                            class="card-imagem-link"
+                            href="paginas/plantio-cuidados.html"
+                        >
+                            <img
+                                class="card-imagem"
+                                src="imagens/logos/plantio.png"
+                                alt="Representação do cultivo e manejo da erva-mate"
+                            >
+                        </a>
+                        <div class="card-conteudo">
+                            <span class="card-numero">
+                                03
+                            </span>
+                            <h3>
+                                Plantio e Cuidados
+                            </h3>
+                            <p>
+                                Aprenda sobre solo, plantio, desenvolvimento,
+                                poda e manejo das plantas.
+                            </p>
+                            <a
+                                class="botao-card"
+                                href="paginas/plantio-cuidados.html"
+                            >
+                                Descobrir →
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- PRODUÇÃO DE MUDAS -->
+                    <article class="card-acesso">
+                        <a
+                            class="card-imagem-link"
+                            href="paginas/producao-mudas.html"
+                        >
+                            <img
+                                class="card-imagem"
+                                src="imagens/logos/mudas.png"
+                                alt="Representação da produção de mudas de erva-mate"
+                            >
+
+                        </a>
+
+                        <div class="card-conteudo">
+
+                            <span class="card-numero">
+                                04
+                            </span>
+
+                            <h3>
+                                Produção de Mudas
+                            </h3>
+
+                            <p>
+                                Da formação dos frutos e sementes até a
+                                germinação e o desenvolvimento das mudas.
+                            </p>
+
+                            <a
+                                class="botao-card"
+                                href="paginas/producao-mudas.html"
+                            >
+                                Descobrir →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- RECEITAS -->
+
+                    <article class="card-acesso">
+
+                        <a
+                            class="card-imagem-link"
+                            href="paginas/receitas.html"
+                        >
+
+                            <img
+                                class="card-imagem"
+                                src="imagens/logos/receitas.png"
+                                alt="Representação dos usos e receitas com erva-mate"
+                            >
+
+                        </a>
+
+                        <div class="card-conteudo">
+
+                            <span class="card-numero">
+                                05
+                            </span>
+
+                            <h3>
+                                Usos e Receitas
+                            </h3>
+
+                            <p>
+                                Do chimarrão e tereré às receitas criativas
+                                desenvolvidas com erva-mate.
+                            </p>
+
+                            <a
+                                class="botao-card"
+                                href="paginas/receitas.html"
+                            >
+                                Descobrir →
+                            </a>
+
+                        </div>
+
+                    </article>
+<!-- PROJETOS -->
+
+<article class="card-acesso">
+
+    <a
+        class="card-imagem-link"
+        href="paginas/projetos-clube.html"
+    >
+
+        <img
+            class="card-imagem"
+            src="imagens/logos/projetos.png"
+            alt="Representação dos projetos desenvolvidos pelo Clube de Ciências Ouro Verde"
+        >
+
+    </a>
+
+    <div class="card-conteudo">
+
+        <span class="card-numero">
+            06
+        </span>
+
+        <h3>
+            Projetos do Clube
+        </h3>
+        <p>
+            Conheça as pesquisas, experiências, tecnologias e ações
+            desenvolvidas pelos estudantes do Clube de Ciências Ouro Verde.
+        </p>
+        <a
+            class="botao-card"
+            href="paginas/projetos-clube.html"
+        >
+            Descobrir →
+        </a>
+    </div>
+
+</article>
+                </div>
+
+            </div>
+
         </section>
 
         <!-- =====================================

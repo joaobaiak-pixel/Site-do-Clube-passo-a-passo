@@ -1,18 +1,443 @@
-<!DOCTYPE html>
+=<!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
-    <!-- =====================================================
-         NÃO APAGAR
-    ====================================================== -->
-
     <meta charset="UTF-8">
-
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
+    <meta
+        name="description"
+        content="Site do Clube de Ciências Ouro Verde do Colégio Estadual do Campo Professor Eugênio de Almeida."
+    >
+    <meta
+        name="author"
+        content="Clube de Ciências Ouro Verde"
+    >
+    <meta
+        name="theme-color"
+        content="#123d24"
+    >
+    <title>Clube de Ciências Ouro Verde</title>
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css?v=3">
+    <link rel="stylesheet" href="css/hero.css?v=3">
+    <link rel="stylesheet" href="css/responsivo.css?v=3">
+</head>
+<body>
+    <!-- ======================================
+         CABEÇALHO / BANNER
+    ======================================= -->
+    <header
+        class="cabecalho-principal"
+        id="inicio"
+    >
+        <div class="cabecalho-sobreposicao">
+            <div class="cabecalho-conteudo">
+                <!-- LOGO DO COLÉGIO -->
+                <div class="area-logo area-logo-colegio">
+                    <a
+                        class="cabecalho-logo logo-colegio"
+                        href="index.html"
+                        aria-label="Página inicial"
+                    >
+                        <img
+                            src="imagens/logos/logo-eugenio.png"
+                            alt="Logotipo do Colégio Estadual do Campo Professor Eugênio de Almeida"
+                        >
+                    </a>
+                </div>
+                <!-- NOME DO SITE -->
+                <div class="cabecalho-texto">
+                    <p class="cabecalho-linha-menor">
+                        Clube de Ciências
+                    </p>
+                    <h1>
+                        Ouro Verde
+                    </h1>
+                    <div class="linha-decorativa"></div>
+                    <p class="cabecalho-escola">
+                        Colégio Estadual do Campo Professor Eugênio de Almeida
+                    </p>
+                    <p class="cabecalho-niveis">
+                        Ensino Fundamental, Médio e Técnico
+                    </p>
+                    <p class="cabecalho-local">
+                        Distrito de Fluviópolis • São Mateus do Sul • Paraná
+                    </p>
+                </div>
+                <!-- LOGO DO CLUBE -->
+                <div class="area-logo">
+                    <a
+                        class="cabecalho-logo"
+                        href="index.html"
+                        aria-label="Clube de Ciências Ouro Verde"
+                    >
+                        <img
+                            src="imagens/logos/logo-clube.png"
+                            alt="Logo do Clube de Ciências Ouro Verde"
+                        >
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ======================================
+         MENU PRINCIPAL
+    ======================================= -->
+    <nav
+        class="menu-principal"
+        aria-label="Menu principal"
+    >
+        <div class="menu-container">
+            <a
+                class="menu-marca"
+                href="#inicio"
+            >
+                Ouro Verde
+            </a>
+            <ul class="menu-lista">
+                <li>
+                    <a
+                        class="menu-ativo"
+                        href="index.html"
+                    >
+                        Início
+                    </a>
+                </li>
+
+                <li>
+                    <a href="paginas/historia.html">
+                        História
+                    </a>
+                </li>
+                <li>
+                    <a href="paginas/lendas-folclore.html">
+                        Lendas
+                    </a>
+                </li>
+
+                <li>
+                    <a href="paginas/plantio-cuidados.html">
+                        Plantio
+                    </a>
+                </li>
+
+                <li>
+                    <a href="paginas/producao-mudas.html">
+                        Produção de Mudas
+                    </a>
+                </li>
+
+                <li>
+                    <a href="paginas/receitas.html">
+                        Receitas
+                    </a>
+                </li>
+
+                <li>
+                    <a href="paginas/projetos.html">
+                        Projetos
+                    </a>
+                </li>
+                <li>
+                    <a href="paginas/galeria.html">
+                        Galeria
+                    </a>
+                </li>
+                <li>
+                    <a href="paginas/noticias.html">
+                        Notícias
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- ======================================
+         CONTEÚDO PRINCIPAL
+    ======================================= -->
+    <main>
+        <!-- APRESENTAÇÃO -->
+        <section class="secao-apresentacao">
+            <div class="container apresentacao-conteudo">
+                <p class="rotulo-secao">
+                    Ciência • natureza • tecnologia
+                </p>
+                <h2 class="titulo-secao">
+                    Conhecimento que nasce da nossa terra
+                </h2>
+                <div class="linha-titulo"></div>
+                <p class="texto-destaque">
+                    O Clube de Ciências Ouro Verde é um espaço de pesquisa,
+                    experimentação e protagonismo estudantil.
+                </p>
+                <p class="texto-apresentacao">
+                    Aqui, ciência e cultura se encontram para investigar a
+                    erva-mate, valorizar os conhecimentos da nossa região,
+                    desenvolver novas tecnologias e aproximar os estudantes
+                    da pesquisa científica.
+                </p>
+            </div>
+        </section>
+        <!-- ======================================
+             CARDS DAS PÁGINAS
+        ======================================= -->
+        <section class="secao-acessos">
+            <div class="container">
+                <div class="cabecalho-secao">
+                    <div>
+                        <p class="rotulo-secao">
+                            Explore e descubra
+                        </p>
+                        <h2 class="titulo-secao">
+                            Conheça a erva-mate
+                        </h2>
+                    </div>
+                    <p class="descricao-secao">
+                        História, cultura, cultivo, produção de mudas e
+                        diferentes formas de utilização da erva-mate.
+                    </p>
+                </div>
+                <div class="grade-cards">
+                    <!-- HISTÓRIA -->
+
+                    <article class="card-acesso">
+                        <a
+                            class="card-imagem-link"
+                            href="paginas/historia.html"
+                        >
+                            <img
+                                class="card-imagem"
+                                src="imagens/logos/historia.png"
+                                alt="Representação da história da erva-mate"
+                            >
+                        </a>
+                        <div class="card-conteudo">
+                            <span class="card-numero">
+                                01
+                            </span>
+                            <h3>
+                                História
+                            </h3>
+                            <p>
+                                Conheça as origens da erva-mate e sua
+                                importância histórica, cultural e econômica.
+                            </p>
+                            <a
+                                class="botao-card"
+                                href="paginas/historia.html"
+                            >
+                                Descobrir →
+                            </a>
+                        </div>
+
+                    </article>
+                    <!-- LENDAS -->
+                    <article class="card-acesso">
+                        <a
+                            class="card-imagem-link"
+                            href="paginas/lendas-folclore.html"
+                        >
+                            <img
+                                class="card-imagem"
+                                src="imagens/logos/lendas.png"
+                                alt="Representação das lendas relacionadas à erva-mate"
+                            >
+                        </a>
+                        <div class="card-conteudo">
+                            <span class="card-numero">
+                                02
+                            </span>
+                            <h3>
+                                Lendas e Folclore
+                            </h3>
+                            <p>
+                                Descubra histórias, personagens e tradições
+                                transmitidas ao longo das gerações.
+                            </p>
+                            <a
+                                class="botao-card"
+                                href="paginas/lendas-folclore.html"
+                            >
+                                Descobrir →
+                            </a>
+                        </div>
+                    </article>
+                    <!-- PLANTIO -->
+                    <article class="card-acesso">
+                        <a
+                            class="card-imagem-link"
+                            href="paginas/plantio-cuidados.html"
+                        >
+                            <img
+                                class="card-imagem"
+                                src="imagens/logos/plantio.png"
+                                alt="Representação do cultivo e manejo da erva-mate"
+                            >
+                        </a>
+                        <div class="card-conteudo">
+                            <span class="card-numero">
+                                03
+                            </span>
+                            <h3>
+                                Plantio e Cuidados
+                            </h3>
+                            <p>
+                                Aprenda sobre solo, plantio, desenvolvimento,
+                                poda e manejo das plantas.
+                            </p>
+                            <a
+                                class="botao-card"
+                                href="paginas/plantio-cuidados.html"
+                            >
+                                Descobrir →
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- PRODUÇÃO DE MUDAS -->
+                    <article class="card-acesso">
+                        <a
+                            class="card-imagem-link"
+                            href="paginas/producao-mudas.html"
+                        >
+                            <img
+                                class="card-imagem"
+                                src="imagens/logos/mudas.png"
+                                alt="Representação da produção de mudas de erva-mate"
+                            >
+
+                        </a>
+                        <div class="card-conteudo">
+
+                            <span class="card-numero">
+                                04
+                            </span>
+
+                            <h3>
+                                Produção de Mudas
+                            </h3>
+
+                            <p>
+                                Da formação dos frutos e sementes até a
+                                germinação e o desenvolvimento das mudas.
+                            </p>
+
+                            <a
+                                class="botao-card"
+                                href="paginas/producao-mudas.html"
+                            >
+                                Descobrir →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- RECEITAS -->
+
+                    <article class="card-acesso">
+
+                        <a
+                            class="card-imagem-link"
+                            href="paginas/receitas.html"
+                        >
+
+                            <img
+                                class="card-imagem"
+                                src="imagens/logos/receitas.png"
+                                alt="Representação dos usos e receitas com erva-mate"
+                            >
+
+                        </a>
+
+                        <div class="card-conteudo">
+
+                            <span class="card-numero">
+                                05
+                            </span>
+
+                            <h3>
+                                Usos e Receitas
+                            </h3>
+
+                            <p>
+                                Do chimarrão e tereré às receitas criativas
+                                desenvolvidas com erva-mate.
+                            </p>
+
+                            <a
+                                class="botao-card"
+                                href="paginas/receitas.html"
+                            >
+                                Descobrir →
+                            </a>
+
+                        </div>
+
+                    </article>
+<!-- PROJETOS -->
+
+<article class="card-acesso">
+
+    <a
+        class="card-imagem-link"
+        href="paginas/projetos-clube.html"
+    >
+
+        <img
+            class="card-imagem"
+            src="imagens/logos/projetos.png"
+            alt="Representação dos projetos desenvolvidos pelo Clube de Ciências Ouro Verde"
+        >
+
+    </a>
+
+    <div class="card-conteudo">
+
+        <span class="card-numero">
+            06
+        </span>
+
+        <h3>
+            Projetos do Clube
+        </h3>
+
+        <p>
+            Conheça as pesquisas, experiências, tecnologias e ações
+            desenvolvidas pelos estudantes do Clube de Ciências Ouro Verde.
+        </p>
+
+        <a
+            class="botao-card"
+            href="paginas/projetos-clube.html"
+        >
+            Descobrir →
+        </a>
+
+    </div>
+
+</article>
+
+                </div>
+
+            </div>
+
+        </section>
+
 
 
     <!-- =====================================================
@@ -24,7 +449,7 @@
     ====================================================== -->
 
     <title>
-        NOME DA PÁGINA | Clube de Ciências Ouro Verde
+        Projetos | Clube de Ciências Ouro Verde
     </title>
 
 
@@ -134,8 +559,7 @@
                         class="cabecalho-logo logo-colegio"
                         href="../index.html"
                         aria-label="Voltar para a página inicial"
-                    >
-
+                    
                         <img
                             src="../imagens/logos/logo-eugenio.png"
                             alt="Logo do Colégio Estadual do Campo Professor Eugênio de Almeida"
@@ -328,7 +752,36 @@
             <div class="container">
 
 
-                <!-- Pequeno texto acima do título -->
+               <section class="abertura">
+    <h2>Conheça a produção de sementes de erva-mate</h2>
+
+    <p>
+        A produção de sementes de erva-mate de qualidade começa pela escolha
+        das árvores-matrizes, que se destacam pelo vigor, pela produtividade,
+        pela adaptação às condições ambientais e pela resistência a pragas
+        e doenças. Conhecer essas características é fundamental para selecionar
+        boas plantas e contribuir para a formação de ervais mais produtivos
+        e adaptados.
+    </p>
+
+    <p>
+        Neste conteúdo, você vai conhecer as principais etapas da produção
+        de sementes de erva-mate, desde a identificação das árvores produtoras
+        e os cuidados na coleta até os processos de floração, frutificação
+        e polinização. Também vai entender a importância da interação entre
+        plantas masculinas e femininas para a formação dos frutos e das sementes.
+    </p>
+
+    <p>
+        O objetivo é oferecer orientações práticas e acessíveis a produtores,
+        técnicos e demais interessados, contribuindo para a seleção adequada
+        de árvores-matrizes e para a produção de sementes de qualidade,
+        valorizando o potencial da erva-mate e fortalecendo o desenvolvimento
+        dos ervais.
+    </p>
+</section>
+
+
 
                 <p class="rotulo-secao">
                     Clube de Ciências Ouro Verde
@@ -395,7 +848,7 @@ Nosso objetivo é reunir informações práticas para ajudar produtores e intere
 
 
                     <h2>
-                        Onde Encontrar as Sementes
+                        Onde Encontrar as Sementes da Erva Mate
                     </h2>
 
 
@@ -525,21 +978,298 @@ Esse sistema é amplamente utilizado em populações de material genético selva
 
 
                     <h2>
-                        Título do assunto
+                       As flores e os frutos da erva mate
                     </h2>
 
 
                     <p>
 
-                        Escreva aqui as informações deste
-                        novo assunto.
+                        
+                    </p>
+
+
+                
+
+                        
+
+                <!-- =========================================
+                     IMPORTANTE
+                     
+                     O estudante pode COPIAR qualquer bloco
+                     acima para criar novos assuntos.
+                     
+                     Sempre copie o bloco completo:
+                     
+                     <section>
+                     
+                     até
+                     
+                     </section>
+                ========================================== -->
+
+
+            </div>
+
+       
+
+        </section>
+
+ </section>   
+   
+        <section class="bloco-conteudo">
+
+
+                    <p class="rotulo-secao">
+                        NOVO ASSUNTO
+                    </p>
+
+
+                    <h2>
+             Germinação das sementes
+                    </h2>
+
+
+                    <p>
+As sementes apresentam baixa germinação, geralmente entre 5% e 20%, por isso recomenda-se a estratificação em areia durante aproximadamente 5 a 6 meses para superar a dormência. A germinação pode iniciar entre 31 e 180 dias após a semeadura. As mudas produzidas por estaquia podem atingir tamanho adequado para o plantio a partir de 6 meses, enquanto as provenientes de sementes levam de 12 a 24 meses. Durante o desenvolvimento, é necessário manter as mudas sob sombreamento de 60% a 80% nos primeiros 20 dias, realizando posteriormente a adaptação gradual ao sol. A utilização de mudas de boa qualidade e os cuidados adequados no viveiro são fundamentais para garantir o bom desenvolvimento da erva-mate.
+
+
+                   <p>
+                
+
+                        
+
+                <!-- =========================================
+                     IMPORTANTE
+                     
+                     O estudante pode COPIAR qualquer bloco
+                     acima para criar novos assuntos.
+                     
+                     Sempre copie o bloco completo:
+                     
+                     <section>
+                     
+                     até
+                     
+                     </section>
+                ========================================== -->
+
+
+            </div>
+
+       
+
+ </section>              
+        
+  <section class="bloco-conteudo">
+
+
+                    <p class="rotulo-secao">
+                        NOVO ASSUNTO
+                    </p>
+
+
+                    <h2>
+                       Por que a semente de erva mate não germina imediatamente?
+                    </h2>
+
+
+                    <p>
+Na natureza, a semente de erva-mate recém-colhida passa por um período de repouso obrigatório que pode durar até 2 anos. Trata-se de uma estratégia de sobrevivência: se ela germinasse imediatamente em condições inadequadas de campo, a muda poderia morrer. Por isso, ela necessita de estímulos específicos e de tempo para "acordar".
+
+                       
+
+                   <p>
+                
+
+                        
+
+                <!-- =========================================
+                     IMPORTANTE
+                     
+                     O estudante pode COPIAR qualquer bloco
+                     acima para criar novos assuntos.
+                     
+                     Sempre copie o bloco completo:
+                     
+                     <section>
+                     
+                     até
+                     
+                     </section>
+                ========================================== -->
+
+
+            </div>
+
+       
+
+ </section>
+      <section class="bloco-conteudo">
+
+
+                    <p class="rotulo-secao">
+                        NOVO ASSUNTO
+                    </p>
+
+
+                    <h2>
+                       Dormência Embrionária
+
+                    </h2>
+
+
+                    <p>
+O principal motivo desse atraso é que a erva-mate possui um embrião rudimentar (imaturo), composto por uma massa de tecido que ainda não se desenvolveu por completo quando o fruto cai da planta. Além disso, existe um desequilíbrio químico interno: a semente possui muitas substâncias que impedem o crescimento (inibidores, como o ácido abscísico) e poucas substâncias que estimulam a germinação (promotores, como a giberelina).
+
+                       
+
+                   <p>
+                
+
+                        
+
+                <!-- =========================================
+                     IMPORTANTE
+                     
+                     O estudante pode COPIAR qualquer bloco
+                     acima para criar novos assuntos.
+                     
+                     Sempre copie o bloco completo:
+                     
+                     <section>
+                     
+                     até
+                     
+                     </section>
+                ========================================== -->
+
+
+            </div>
+
+       
+
+ </section>   
+   
+        <section class="bloco-conteudo">
+
+
+                    <p class="rotulo-secao">
+                        NOVO ASSUNTO
+                    </p>
+
+
+                    <h2>
+              Período de vários meses até a germinação (Tempo)
+
+
+                    </h2>
+
+
+                    <p>
+As sementes apresentam baixa germinação, geralmente entre 5% e 20%, por isso recomenda-se a estratificação em areia durante aproximadamente 5 a 6 meses para superar a dormência. A germinação pode iniciar entre 31 e 180 dias após a semeadura. As mudas produzidas por estaquia podem atingir tamanho adequado para o plantio a partir de 6 meses, enquanto as provenientes de sementes levam de 12 a 24 meses. Durante o desenvolvimento, é necessário manter as mudas sob sombreamento de 60% a 80% nos primeiros 20 dias, realizando posteriormente a adaptação gradual ao sol. A utilização de mudas de boa qualidade e os cuidados adequados no viveiro são fundamentais para garantir o bom desenvolvimento da erva-mate.
+
+
+                   <p>
+                
+
+                        
+
+                <!-- =========================================
+                     IMPORTANTE
+                     
+                     O estudante pode COPIAR qualquer bloco
+                     acima para criar novos assuntos.
+                     
+                     Sempre copie o bloco completo:
+                     
+                     <section>
+                     
+                     até
+                     
+                     </section>
+                ========================================== -->
+
+
+            </div>
+
+       
+
+ </section>              
+        <p class="rotulo-secao">
+                        NOVO ASSUNTO
+                    </p>
+
+
+                    <h2>
+                     Área do viveiro
+
+
+                    </h2>
+
+
+                    <p>
+A área necessária para a instalação de um viveiro depende, dentre outros fatores, do tamanho dos recipientes a serem utilizados, do número de plantas a serem produzidas, do percentual de germinação da semente ou de enraizamento dos propágulos, das perdas provenientes das seleções.
+A área produtiva, ou seja, a área dos canteiros ou de recipientes, deverá possuir em torno de 60% da área total, sendo o espaço restante destinado a caminhos, ruas, estradas, galpões, construções em geral e área para o preparo do substrato e enchimento das embalagens. A definição do tamanho dos canteiros e/ou bancadas deverá levar em consideração os tratos necessários no manejo das mudas, a fim de facilitar o trabalho dos funcionários e otimizar a execução das atividades do viveiro(Wendling; Santin, 2015).
+
 
                     </p>
 
 
-                </section>
+                
+
+                        
+
+                <!-- =========================================
+                     IMPORTANTE
+                     
+                     O estudante pode COPIAR qualquer bloco
+                     acima para criar novos assuntos.
+                     
+                     Sempre copie o bloco completo:
+                     
+                     <section>
+                     
+                     até
+                     
+                     </section>
+                ========================================== -->
 
 
+            </div>
+
+        </section>
+    </main>
+
+</section>
+ <p class="rotulo-secao">
+                        NOVO ASSUNTO
+                    </p>
+
+
+                    <h2>
+                  Estrutura do viveiro
+
+
+                    </h2>
+
+
+                    <p>
+A instalação de um viveiro de erva-mate exige planejamento adequado, considerando a quantidade de mudas a serem produzidas, o tipo de produção e o nível tecnológico utilizado.
+
+A infraestrutura deve contar com cercas, para impedir a entrada de animais; galpão semiaberto, para as atividades de produção; tanques e caixas-d’água, para o armazenamento de água; e depósitos, para guardar ferramentas, equipamentos e insumos.
+
+Também são importantes a casa de vegetação, que permite controlar a temperatura e a umidade, e a casa de sombra, que protege as mudas do excesso de sol. Além disso, o viveiro deve possuir um sistema de irrigação adequado, bancadas que facilitem o manejo das mudas, quebra-ventos para proteger as estruturas e energia elétrica para o funcionamento dos equipamentos.
+
+Portanto, uma infraestrutura bem planejada facilita o trabalho, melhora as condições de cultivo e contribui para o desenvolvimento saudável e a qualidade das mudas de erva-mate.
+
+
+
+                    </p>
+
+
+                
+
+                        
 
                 <!-- =========================================
                      IMPORTANTE
@@ -561,11 +1291,154 @@ Esse sistema é amplamente utilizado em populações de material genético selva
 
         </section>
 
-
+  </section>
     </main>
 
+</section>
+ <p class="rotulo-secao">
+                        NOVO ASSUNTO
+                    </p>
 
 
+                    <h2>
+                 Recipientes
+
+                    </h2>
+
+
+                    <p>
+A produção de mudas de erva-mate exige cuidados na escolha dos recipientes, no preparo do substrato e no desenvolvimento do sistema radicular, pois esses fatores influenciam diretamente a qualidade das mudas e sua sobrevivência após o plantio no campo.
+
+Os tubetes plásticos são bastante recomendados por permitirem o uso racional do espaço no viveiro, facilitarem o manejo e as operações de produção, possibilitarem a reutilização das embalagens e favorecerem o desenvolvimento das raízes. Entretanto, é necessário respeitar o cronograma de produção, pois a permanência excessiva das mudas nos tubetes pode provocar a morte de raízes, deficiências nutricionais e dificuldades na absorção de água após o plantio. Durante o enchimento dos recipientes, o substrato não deve ficar excessivamente compactado nem muito solto, garantindo condições adequadas para o crescimento radicular. Os tubetes também precisam apresentar orifícios de drenagem, para evitar o acúmulo de água, e ranhuras internas, que orientam o crescimento das raízes e evitam seu enovelamento.
+
+O tamanho do tubete também influencia a qualidade das mudas. Recipientes menores apresentam menor custo, porém limitam o crescimento das raízes e da parte aérea, exigindo que as mudas sejam levadas ao campo mais cedo. Além disso, essas mudas tendem a ser mais sensíveis à falta de água nas primeiras semanas ou meses após o plantio. Por isso, é importante avaliar a proporção entre a parte aérea e as raízes, considerando como referência uma altura da muda equivalente a aproximadamente 1,5 vez a altura do recipiente, além de observar a boa formação do sistema radicular e a presença de raízes laterais vivas e brancas.
+
+Outra alternativa são os sistemas conjugados de substrato e recipiente, como blocos prensados e sacos biodegradáveis. Nesses sistemas, a muda é plantada diretamente no campo com o recipiente, sem necessidade de removê-lo, reduzindo os custos com mão de obra e facilitando o plantio. Esses materiais também podem favorecer uma melhor arquitetura das raízes e proporcionar bom desenvolvimento das mudas no campo. Os tubetes biodegradáveis são outra opção promissora, mas ainda precisam de avaliações específicas para a produção de erva-mate antes de serem utilizados em larga escala comercial.
+
+Portanto, a escolha do recipiente deve considerar o custo, o tempo de permanência no viveiro, a facilidade de manejo e, principalmente, a qualidade do sistema radicular. Independentemente do tipo utilizado, é fundamental verificar a procedência e a qualidade dos materiais, garantindo a produção de mudas vigorosas, bem desenvolvidas e com maior potencial de sobrevivência após o plantio definitivo.
+
+
+
+
+                    </p>
+
+
+                
+
+                        
+
+                <!-- =========================================
+                     IMPORTANTE
+                     
+                     O estudante pode COPIAR qualquer bloco
+                     acima para criar novos assuntos.
+                     
+                     Sempre copie o bloco completo:
+                     
+                     <section>
+                     
+                     até
+                     
+                     </section>
+                ========================================== -->
+
+
+            </div>
+
+        </section>
+    
+  
+    
+</section>
+ <p class="rotulo-secao">
+                        NOVO ASSUNTO
+                    </p>
+
+
+                    <h2>
+                 
+                Substrato
+                    </h2>
+
+
+                    <p>
+
+O substrato é o material utilizado no cultivo das mudas, responsável por oferecer sustentação e condições adequadas de água e aeração para o desenvolvimento das raízes. Na produção de mudas de erva-mate, podem ser utilizados 70% de fibra de coco e 30% de casca de arroz carbonizada e com 40% de fibra de coco e 60% de casca de arroz carbonizada
+
+                    </p>
+
+
+                
+
+                        
+
+                <!-- =========================================
+                     IMPORTANTE
+                     
+                     O estudante pode COPIAR qualquer bloco
+                     acima para criar novos assuntos.
+                     
+                     Sempre copie o bloco completo:
+                     
+                     <section>
+                     
+                     até
+                     
+                     </section>
+                ========================================== -->
+
+
+            </div>
+
+        </section>
+        
+    
+</section>
+ <p class="rotulo-secao">
+                        NOVO ASSUNTO
+                    </p>
+
+
+                    <h2>
+                 
+                Substrato
+                    </h2>
+
+
+                    <p>
+
+
+
+                    </p>
+
+
+                
+
+                        
+
+                <!-- =========================================
+                     IMPORTANTE
+                     
+                     O estudante pode COPIAR qualquer bloco
+                     acima para criar novos assuntos.
+                     
+                     Sempre copie o bloco completo:
+                     
+                     <section>
+                     
+                     até
+                     
+                     </section>
+                ========================================== -->
+
+
+            </div>
+
+        </section>
+
+    
+    
+    
     <!-- =====================================================
          RODAPÉ
          
